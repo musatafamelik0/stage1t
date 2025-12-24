@@ -2,210 +2,388 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Taşkınlar Gurme — Su Sipariş</title>
-  <meta name="description" content="Taşkınlar Gurme — Siteye özel hızlı su siparişi. Uygulama yok, üyelik yok." />
+  <meta name="description" content="Taşkınlar Gurme — Siteye özel hızlı su siparişi." />
+  <meta name="theme-color" content="#2e7d32" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23c62828' d='M32 6c12 10 18 20 18 30 0 10-8 18-18 18S14 46 14 36C14 26 20 16 32 6z'/%3E%3Cpath fill='%232e7d32' d='M40 26c0 6-4 10-8 10s-8-4-8-10c0-6 3-11 8-16 5 5 8 10 8 16z' opacity='.9'/%3E%3C/svg%3E" />
+
   <style>
     :root{
-      /* Kırmızı-Yeşil / daha “market & kurumsal” */
-      --bg:#f6f7f6;
-      --card:#ffffff;
-      --card2:#f3f5f4;
-      --text:#141615;
-      --muted:#5f6b66;
-      --line:rgba(20,22,21,.10);
+      /* Market-Profesyonel: kırmızı+yeşil, sade, premium */
+      --bg: #f6f7f6;
+      --card: #ffffff;
+      --card2: #f2f4f3;
+      --text: #141615;
+      --muted: #5c6762;
+      --line: rgba(20,22,21,.10);
 
-      --accent:#c62828;   /* kırmızı (aksiyon) */
-      --accent2:#2e7d32;  /* yeşil (güven/ekleme) */
+      --red: #c62828;   /* aksiyon */
+      --green:#2e7d32;  /* güven */
 
-      --shadow: 0 10px 28px rgba(0,0,0,.08);
-      --radius: 16px;
+      --shadow: 0 10px 26px rgba(0,0,0,.08);
+      --shadow2: 0 18px 45px rgba(0,0,0,.10);
+      --r: 16px;
+      --r2: 20px;
     }
 
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box }
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       background: var(--bg);
-      color:var(--text);
-      line-height:1.35;
+      color: var(--text);
+      line-height: 1.35;
     }
-    a{color:inherit}
-    .wrap{max-width:1100px;margin:0 auto;padding:20px 14px 70px}
+    .wrap{
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px 14px 80px;
+    }
+
+    /* Top bar */
     header{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      padding:14px 14px;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
       background: var(--card);
-      box-shadow: var(--shadow);
-      position: sticky; top: 10px; z-index: 10;
+      border: 1px solid var(--line);
+      border-radius: var(--r2);
+      box-shadow: var(--shadow2);
+      padding: 14px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      position: sticky;
+      top: 10px;
+      z-index: 20;
     }
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{
-      width:44px;height:44px;border-radius:14px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-    }
-    .brand h1{font-size:16px;margin:0;letter-spacing:.2px}
-    .brand p{margin:2px 0 0;font-size:12px;color:var(--muted)}
 
-    .pill{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
-    .tag{
-      font-size:12px;padding:8px 10px;border-radius:999px;
-      border:1px solid var(--line);
-      background: var(--card2);
-      color:var(--muted);
-      white-space:nowrap;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 260px;
     }
-    .tag strong{color:var(--text); font-weight:700}
-
-    .cta{display:flex;gap:10px;align-items:center}
-    .btn{
-      border:1px solid var(--line);
-      background: var(--card2);
-      color:var(--text);
-      padding:10px 12px;
+    .mark{
+      width: 44px;
+      height: 44px;
       border-radius: 14px;
-      cursor:pointer;
-      font-weight:700;
-      letter-spacing:.2px;
+      background: linear-gradient(135deg, var(--green), var(--red));
+      box-shadow: 0 10px 20px rgba(46,125,50,.18);
+    }
+    .brand h1{
+      margin:0;
+      font-size: 16px;
+      letter-spacing: .2px;
+    }
+    .brand p{
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .chips{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .chip{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      padding: 9px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card2);
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .dot{
+      width: 8px; height: 8px; border-radius: 999px;
+      display:inline-block;
+    }
+    .dot.g{ background: var(--green); }
+    .dot.r{ background: var(--red); }
+
+    .actions{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+    }
+    .btn{
+      border: 1px solid var(--line);
+      background: var(--card2);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 800;
+      letter-spacing: .2px;
       transition: transform .08s ease, border-color .15s ease, background .15s ease;
     }
-    .btn:hover{border-color: rgba(198,40,40,.35)}
-    .btn:active{transform: translateY(1px)}
+    .btn:hover{ border-color: rgba(20,22,21,.18); }
+    .btn:active{ transform: translateY(1px); }
+
     .btn.primary{
-      background: var(--accent);
-      border-color: rgba(198,40,40,.20);
-      color:#fff;
+      background: var(--red);
+      border-color: rgba(198,40,40,.25);
+      color: #fff;
     }
-    .btn.primary:hover{border-color: rgba(198,40,40,.55)}
-    .btn.ghost{
-      background: #fff;
+    .btn.primary:hover{ border-color: rgba(198,40,40,.55); }
+
+    /* Trust bar */
+    .trustbar{
+      margin-top: 12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+    }
+    .trustitem{
+      flex: 1 1 260px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .trustleft{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .badge{
+      font-size: 11px;
+      font-weight: 900;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(46,125,50,.20);
+      background: rgba(46,125,50,.08);
+      color: #1f5a24;
+      white-space:nowrap;
     }
 
-    main{margin-top:16px;display:grid;grid-template-columns: 1.2fr .8fr;gap:14px;align-items:start}
+    /* Layout */
+    main{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 14px;
+      align-items: start;
+    }
     @media (max-width: 920px){
-      header{position:static}
-      main{grid-template-columns:1fr}
-      .pill{justify-content:flex-start}
+      header{ position: static; }
+      main{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+      .chips{ justify-content: flex-start; }
     }
 
     .card{
-      border:1px solid var(--line);
+      border: 1px solid var(--line);
       background: var(--card);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      border-radius: var(--r2);
+      box-shadow: var(--shadow2);
       overflow:hidden;
     }
     .card .hd{
-      padding:13px 14px;
+      padding: 13px 14px;
       border-bottom: 1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
       background: #fff;
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
     }
-    .card .hd h2{font-size:14px;margin:0;letter-spacing:.2px}
-    .card .bd{padding:14px}
-    .muted{color:var(--muted); font-size:12px}
+    .card .hd h2{
+      margin:0;
+      font-size: 14px;
+      letter-spacing: .2px;
+    }
+    .card .bd{ padding: 14px; }
+    .muted{ color: var(--muted); font-size: 12px; }
 
-    .grid{display:grid;grid-template-columns: repeat(2, minmax(0,1fr));gap:12px}
-    @media (max-width: 520px){.grid{grid-template-columns:1fr}}
+    /* Product grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+    }
+    @media (max-width: 520px){
+      .grid{ grid-template-columns: 1fr; }
+    }
 
     .product{
+      border: 1px solid var(--line);
+      border-radius: var(--r);
       background: #fff;
-      border:1px solid var(--line);
-      border-radius: 14px;
-      padding:12px;
-      display:flex;flex-direction:column;gap:10px;
-      min-height: 138px;
+      padding: 12px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      min-height: 148px;
     }
-    .product .top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-    .product h3{margin:0;font-size:14px;line-height:1.25}
+    .product .top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .product h3{
+      margin:0;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+    .desc{
+      margin: 4px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
     .price{
-      font-weight:900;
-      color: var(--text);
+      font-weight: 950;
+      font-size: 12px;
+      padding: 7px 9px;
+      border-radius: 12px;
+      border: 1px solid rgba(46,125,50,.18);
       background: rgba(46,125,50,.08);
-      border:1px solid rgba(46,125,50,.18);
-      padding:6px 8px;border-radius: 12px;font-size:12px;white-space:nowrap;
+      white-space: nowrap;
     }
-    .desc{margin:0;font-size:12px;color:var(--muted)}
 
-    .qtyRow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto}
-    .qty{display:flex;align-items:center;gap:8px}
-
+    .qtyRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      margin-top: auto;
+    }
+    .qty{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+    }
     .iconBtn{
-      width:34px;height:34px;border-radius: 12px;
-      border:1px solid var(--line);
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
       background: #fff;
-      color:var(--text);
-      cursor:pointer;
-      font-size:16px;
-      font-weight:900;
-      display:grid;place-items:center;
-      transition: border-color .15s ease, transform .08s ease, background .15s ease;
+      cursor: pointer;
+      font-weight: 950;
+      font-size: 16px;
+      display:grid;
+      place-items:center;
+      transition: transform .08s ease, border-color .15s ease, background .15s ease;
     }
-    /* + yeşil, - kırmızı */
-    .iconBtn.plus:hover{border-color: rgba(46,125,50,.55); background: rgba(46,125,50,.06)}
-    .iconBtn.minus:hover{border-color: rgba(198,40,40,.55); background: rgba(198,40,40,.05)}
-    .iconBtn:active{transform: translateY(1px)}
-    .qtyNum{min-width:26px;text-align:center;font-weight:900}
+    .iconBtn:active{ transform: translateY(1px); }
+    .iconBtn.plus:hover{
+      border-color: rgba(46,125,50,.55);
+      background: rgba(46,125,50,.06);
+    }
+    .iconBtn.minus:hover{
+      border-color: rgba(198,40,40,.55);
+      background: rgba(198,40,40,.05);
+    }
+    .qtyNum{
+      min-width: 28px;
+      text-align:center;
+      font-weight: 950;
+    }
 
+    /* Cart */
     .cartLine{
-      display:flex;justify-content:space-between;gap:10px;
-      padding:10px 0;border-bottom: 1px dashed rgba(20,22,21,.18);
-      font-size:13px;
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(20,22,21,.18);
+      font-size: 13px;
     }
-    .cartLine:last-child{border-bottom:none}
-    .cartLine .l{display:flex;flex-direction:column;gap:2px}
-    .cartLine .r{font-weight:900;white-space:nowrap}
+    .cartLine:last-child{ border-bottom:none; }
+    .cartLine .l{
+      display:flex;
+      flex-direction:column;
+      gap: 2px;
+    }
+    .cartLine .r{
+      font-weight: 950;
+      white-space: nowrap;
+    }
 
     .sumRow{
-      display:flex;align-items:center;justify-content:space-between;
-      padding-top:10px;border-top: 1px solid var(--line);
-      margin-top:10px;font-weight:900;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding-top: 10px;
+      margin-top: 10px;
+      border-top: 1px solid var(--line);
+      font-weight: 950;
     }
 
-    .form{display:grid;gap:10px;margin-top:12px}
-    label{font-size:12px;color:var(--muted)}
+    /* Form */
+    .form{
+      margin-top: 14px;
+      display:grid;
+      gap: 10px;
+    }
+    label{ font-size: 12px; color: var(--muted); }
     input, select, textarea{
-      width:100%;
-      padding:12px 12px;
+      width: 100%;
+      padding: 12px 12px;
       border-radius: 14px;
-      border:1px solid var(--line);
+      border: 1px solid var(--line);
       background: #fff;
       color: var(--text);
-      outline:none;
+      outline: none;
     }
     input:focus, select:focus, textarea:focus{
       border-color: rgba(46,125,50,.45);
       box-shadow: 0 0 0 3px rgba(46,125,50,.10);
     }
-    textarea{min-height:72px;resize:vertical}
-    .row2{display:grid;grid-template-columns: 1fr 1fr;gap:10px}
-    @media (max-width: 520px){.row2{grid-template-columns:1fr}}
+    textarea{ min-height: 72px; resize: vertical; }
+
+    .row2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 520px){
+      .row2{ grid-template-columns: 1fr; }
+    }
+
+    .split{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
+    .hint{
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
 
     .toast{
-      position: fixed;left: 50%;bottom: 18px;transform: translateX(-50%);
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
       background: #141615;
-      border:1px solid rgba(255,255,255,.12);
-      color:#fff;
-      padding: 10px 12px;border-radius: 14px;
-      box-shadow: var(--shadow);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow2);
       display:none;
-      max-width: min(560px, calc(100% - 24px));
       z-index: 999;
+      max-width: min(640px, calc(100% - 24px));
       font-size: 13px;
-    }
-    .split{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-    .mini{font-size:11px;color:var(--muted)}
-    .okBadge{
-      font-size:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(46,125,50,.20);
-      background: rgba(46,125,50,.08);
-      color: #1f5a24;
-      font-weight:800;
-      white-space:nowrap;
     }
   </style>
 </head>
@@ -214,31 +392,46 @@
   <div class="wrap">
     <header>
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <div class="mark" aria-hidden="true"></div>
         <div>
           <h1>Taşkınlar Gurme</h1>
-          <p>Siteye özel hızlı su siparişi</p>
+          <p>Su siparişi</p>
         </div>
       </div>
 
-      <div class="pill" aria-label="Bilgiler">
-        <div class="tag"><strong>Üyelik yok</strong></div>
-        <div class="tag"><strong>Tahmini</strong> 20–45 dk</div>
-        <div class="tag">Durum: <strong id="openState">Açık</strong></div>
+      <div class="chips" aria-label="Bilgiler">
+        <div class="chip"><span class="dot g"></span><strong>Üyelik yok</strong></div>
+        <div class="chip"><span class="dot g"></span><strong>20–45 dk</strong> teslim</div>
+        <div class="chip"><span class="dot r"></span>Durum: <strong id="openState">Açık</strong></div>
       </div>
 
-      <div class="cta">
-        <button class="btn ghost" id="btnReset" title="Sepeti temizle">Sepeti sıfırla</button>
+      <div class="actions">
+        <button class="btn" id="btnReset" title="Sepeti temizle">Sepeti sıfırla</button>
         <button class="btn primary" id="btnScrollCart" title="Siparişi tamamla">Siparişe git</button>
       </div>
     </header>
+
+    <div class="trustbar">
+      <div class="trustitem">
+        <div class="trustleft"><span class="dot g"></span> Sipariş alındı bildirimi</div>
+        <span class="badge">Net</span>
+      </div>
+      <div class="trustitem">
+        <div class="trustleft"><span class="dot r"></span> Değişim / iade: kapıda çözüm</div>
+        <span class="badge">Kolay</span>
+      </div>
+      <div class="trustitem">
+        <div class="trustleft"><span class="dot g"></span> Site içi hızlı teslimat</div>
+        <span class="badge">Hızlı</span>
+      </div>
+    </div>
 
     <main>
       <!-- PRODUCTS -->
       <section class="card">
         <div class="hd">
-          <h2>Su</h2>
-          <div class="okBadge">Hızlı sipariş</div>
+          <h2>Ürünler</h2>
+          <div class="muted">Su</div>
         </div>
         <div class="bd">
           <div class="grid" id="productGrid"></div>
@@ -252,14 +445,14 @@
           <div class="muted" id="cartMeta">0 adet</div>
         </div>
         <div class="bd">
-          <div id="cartLines" class="muted">Sepet boş. Soldan ürün ekle.</div>
+          <div id="cartLines" class="muted">Sepet boş.</div>
 
           <div class="sumRow">
             <span>Toplam</span>
             <span id="cartTotal">0 ₺</span>
           </div>
 
-          <div class="form" style="margin-top:14px">
+          <div class="form">
             <div class="row2">
               <div>
                 <label for="apt">Daire No</label>
@@ -281,17 +474,15 @@
 
             <div>
               <label for="note">Not (opsiyonel)</label>
-              <textarea id="note" placeholder="Örn: Kapıya bırak / zile basma / bozuk para yok"></textarea>
+              <textarea id="note" placeholder="Örn: Kapıya bırak / zile basma"></textarea>
             </div>
 
             <div class="split">
               <button class="btn primary" id="btnOrder">Siparişi Tamamla</button>
-              <button class="btn" id="btnCopy">Sipariş Metnini Kopyala</button>
+              <button class="btn" id="btnCopy">Kopyala</button>
             </div>
 
-            <div class="mini">
-              Sipariş WhatsApp’a hazır mesaj olarak gider.
-            </div>
+            <div class="hint">Onay sonrası hazırlamaya alınır.</div>
           </div>
         </div>
       </aside>
@@ -310,28 +501,23 @@
       whatsappPhoneE164: "90XXXXXXXXXX"
     };
 
-    // Ürünler — su odaklı (Stage 1)
+    // Stage 1 — sade ürün dili
     const PRODUCTS = [
-      { id:"w1", name:"Damacanа 19L (Depozitosuz)", desc:"Yeni damacana.", price: 95 },
-      { id:"w2", name:"Damacanа 19L (Dolum)", desc:"Boş damacana ile değişim.", price: 70 },
-      { id:"w3", name:"5L Pet Su", desc:"Pratik.", price: 35 },
-      { id:"w4", name:"1.5L Pet Su (6'lı)", desc:"Koli (6 adet).", price: 60 },
-      { id:"w5", name:"0.5L Pet Su (12'li)", desc:"Koli (12 adet).", price: 55 },
-      { id:"w6", name:"0.33L Su (24'lü)", desc:"Koli (24 adet).", price: 95 }
+      { id:"w1", name:"19L Damacana (Yeni)",      desc:"Depozitosuz.",         price: 95 },
+      { id:"w2", name:"19L Damacana (Değişim)",   desc:"Boş damacana ile.",    price: 70 },
+      { id:"w3", name:"5L Pet Su",                desc:"",                    price: 35 },
+      { id:"w4", name:"1.5L Su (6’lı)",           desc:"Koli.",               price: 60 },
+      { id:"w5", name:"0.5L Su (12’li)",          desc:"Koli.",               price: 55 },
+      { id:"w6", name:"0.33L Su (24’lü)",         desc:"Koli.",               price: 95 }
     ];
 
-    // ===============================
-    // State
-    // ===============================
-    const LS_KEY = "taskinlar_gurme_cart_v1";
+    const LS_KEY = "taskinlar_gurme_cart_v2";
     let cart = loadCart();
 
-    // ===============================
-    // Helpers
-    // ===============================
     function formatTL(n){
       return new Intl.NumberFormat("tr-TR", { maximumFractionDigits:0 }).format(n) + " ₺";
     }
+
     function toast(msg){
       const t = document.getElementById("toast");
       t.textContent = msg;
@@ -339,20 +525,14 @@
       clearTimeout(toast._timer);
       toast._timer = setTimeout(()=> t.style.display = "none", 2200);
     }
-    function saveCart(){
-      localStorage.setItem(LS_KEY, JSON.stringify(cart));
-    }
+
+    function saveCart(){ localStorage.setItem(LS_KEY, JSON.stringify(cart)); }
     function loadCart(){
-      try{
-        const raw = localStorage.getItem(LS_KEY);
-        return raw ? JSON.parse(raw) : {};
-      }catch(e){
-        return {};
-      }
+      try{ return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); }
+      catch(e){ return {}; }
     }
-    function cartCount(){
-      return Object.values(cart).reduce((a,b)=>a+b,0);
-    }
+
+    function cartCount(){ return Object.values(cart).reduce((a,b)=>a+b,0); }
     function cartTotal(){
       let sum = 0;
       for(const [pid, qty] of Object.entries(cart)){
@@ -361,6 +541,7 @@
       }
       return sum;
     }
+
     function ensureQty(pid){ return cart[pid] || 0; }
     function setQty(pid, qty){
       if(qty <= 0) delete cart[pid];
@@ -371,9 +552,15 @@
     function inc(pid){ setQty(pid, ensureQty(pid) + 1); }
     function dec(pid){ setQty(pid, ensureQty(pid) - 1); }
 
-    // ===============================
-    // Render Products
-    // ===============================
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
     function renderProducts(){
       const grid = document.getElementById("productGrid");
       grid.innerHTML = "";
@@ -386,16 +573,16 @@
           <div class="top">
             <div>
               <h3>${escapeHtml(p.name)}</h3>
-              <p class="desc">${escapeHtml(p.desc)}</p>
+              <p class="desc">${escapeHtml(p.desc || "")}</p>
             </div>
             <div class="price">${formatTL(p.price)}</div>
           </div>
 
           <div class="qtyRow">
             <div class="muted">Adet</div>
-            <div class="qty" aria-label="${escapeHtml(p.name)} adet seçimi">
+            <div class="qty">
               <button class="iconBtn minus" data-act="dec" data-id="${p.id}" aria-label="Azalt">–</button>
-              <div class="qtyNum" id="qty_${p.id}">${q}</div>
+              <div class="qtyNum">${q}</div>
               <button class="iconBtn plus" data-act="inc" data-id="${p.id}" aria-label="Artır">+</button>
             </div>
           </div>
@@ -412,9 +599,6 @@
       });
     }
 
-    // ===============================
-    // Render Cart
-    // ===============================
     function renderCart(){
       const lines = document.getElementById("cartLines");
       const meta = document.getElementById("cartMeta");
@@ -425,7 +609,7 @@
 
       if(count === 0){
         lines.className = "muted";
-        lines.innerHTML = "Sepet boş. Soldan ürün ekle.";
+        lines.textContent = "Sepet boş.";
         totalEl.textContent = formatTL(0);
         return;
       }
@@ -452,9 +636,6 @@
       totalEl.textContent = formatTL(cartTotal());
     }
 
-    // ===============================
-    // Checkout Message
-    // ===============================
     function generateOrderNo(){
       const d = new Date();
       const y = d.getFullYear().toString().slice(-2);
@@ -472,8 +653,8 @@
 
       const count = cartCount();
       if(count === 0) return { ok:false, msg:"Sepet boş." };
-      if(!apt) return { ok:false, msg:"Daire numarası gerekli." };
-      if(!phone) return { ok:false, msg:"Telefon numarası gerekli." };
+      if(!apt) return { ok:false, msg:"Daire no gerekli." };
+      if(!phone) return { ok:false, msg:"Telefon gerekli." };
 
       const orderNo = generateOrderNo();
       const items = Object.entries(cart).map(([pid, qty])=>{
@@ -496,7 +677,7 @@ ${items}
 
 Toplam: ${total}${note ? `\n\nNot: ${note}` : ""}`;
 
-      return { ok:true, text, orderNo };
+      return { ok:true, text };
     }
 
     function openWhatsApp(text){
@@ -528,18 +709,7 @@ Toplam: ${total}${note ? `\n\nNot: ${note}` : ""}`;
       renderCart();
     }
 
-    function escapeHtml(str){
-      return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-
-    // ===============================
     // Events
-    // ===============================
     document.getElementById("btnReset").addEventListener("click", ()=>{
       cart = {};
       saveCart();
@@ -564,6 +734,7 @@ Toplam: ${total}${note ? `\n\nNot: ${note}` : ""}`;
       await copyText(res.text);
     });
 
+    // Init
     render();
   </script>
 </body>
